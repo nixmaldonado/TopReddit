@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/postItemUserName"
+            android:padding="8dp"
+            tools:text="UserName"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    <LinearLayout
+            android:id="@+id/middleLayout"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/postItemUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        <ImageView
+                android:contentDescription="@string/post_image"
+                android:id="@+id/postItemImage"
+                android:layout_margin="8dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"/>
+
+        <TextView
+                android:id="@+id/postItemTitle"
+                tools:text="Title"
+                android:padding="8dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+            app:layout_constraintTop_toBottomOf="@+id/middleLayout"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatButton
+                android:layout_margin="8dp"
+                android:id="@+id/dismissPostButton"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/dismiss_post"
+                android:padding="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/postCommentCount"
+                android:textAlignment="textEnd"
+                android:padding="8dp"
+                tools:text="42 comments."
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
