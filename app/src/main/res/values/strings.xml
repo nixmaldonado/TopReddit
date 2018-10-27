@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TopReddit</string>
+    <string name="post_image">Post Image</string>
 </resources>
