@@ -6,7 +6,7 @@
                                              android:layout_height="match_parent">
 
     <TextView
-            android:id="@+id/postItemUserName"
+            android:id="@+id/itemAuthor"
             android:padding="8dp"
             tools:text="UserName"
             app:layout_constraintTop_toTopOf="parent"
@@ -16,7 +16,7 @@
     <LinearLayout
             android:id="@+id/middleLayout"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/postItemUserName"
+            app:layout_constraintTop_toBottomOf="@+id/itemAuthor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
