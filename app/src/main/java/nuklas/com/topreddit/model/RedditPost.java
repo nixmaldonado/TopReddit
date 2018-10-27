@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 public class RedditPost {
 
     @SerializedName("data")
-    public PostData postData;
+    public PostData data;
 
     public class PostData {
 
@@ -19,6 +19,9 @@ public class RedditPost {
         public long created;
 
         @SerializedName("num_comments")
-        public int commentsCount;
+        public int commentCount;
+
+        @SerializedName("thumbnail")
+        public String imageThumbnailUrl;
     }
 }
