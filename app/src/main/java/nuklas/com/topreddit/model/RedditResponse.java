@@ -9,7 +9,7 @@ public class RedditResponse {
     @SerializedName("data")
     public RedditData data;
 
-    private class RedditData {
+    public class RedditData {
 
         @SerializedName("children")
         public ArrayList<RedditPost> postList;
