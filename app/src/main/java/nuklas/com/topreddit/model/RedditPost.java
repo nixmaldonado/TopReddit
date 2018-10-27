@@ -2,12 +2,12 @@ package nuklas.com.topreddit.model;
 
 import com.google.gson.annotations.SerializedName;
 
-class RedditPost {
+public class RedditPost {
 
     @SerializedName("data")
     public PostData postData;
 
-    private class PostData {
+    public class PostData {
 
         @SerializedName("author")
         public String author;
