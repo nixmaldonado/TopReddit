@@ -11,16 +11,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <fragment
-                android:id="@+id/postListFragmentContainer"
-                android:name="nuklas.com.topreddit.PostListFragment"
+        <FrameLayout
+                android:id="@+id/postListFragmentContainerLand"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"/>
 
-        <fragment
-                android:id="@+id/postFragmentContainer"
-                android:name="nuklas.com.topreddit.PostFragment"
+        <FrameLayout
+                android:id="@+id/postFragmentContainerLand"
                 android:layout_weight="2"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"/>
