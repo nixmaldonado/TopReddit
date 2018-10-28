@@ -77,6 +77,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
                     notifyDataSetChanged();
                     break;
                 case R.id.middleLayout:
+                    activity.displayPost(postList.get(getAdapterPosition()));
                     break;
             }
         }
