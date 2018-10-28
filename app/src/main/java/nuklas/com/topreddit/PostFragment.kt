@@ -14,7 +14,7 @@ class PostFragment : Fragment() {
 
     private var post: PostData? = null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-            arguments?.let { post = it.get(POST_KEY) as PostData }
+        arguments?.let { post = it.getParcelable(POST_KEY) }
         return inflater.inflate(R.layout.fragment_post, container, false)
     }
 
