@@ -3,20 +3,38 @@
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+                                             android:layout_height="wrap_content">
 
-    <TextView
-            android:id="@+id/itemAuthor"
-            android:padding="8dp"
-            tools:text="UserName"
+    <LinearLayout
+            android:id="@+id/topLayout"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_height="wrap_content">
+
+        <TextView
+                android:id="@+id/itemAuthor"
+                android:padding="8dp"
+                tools:text="UserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        <TextView
+                android:id="@+id/postItemTime"
+                android:padding="8dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
+                tools:text="3 hours ago."/>
+
+    </LinearLayout>
 
     <LinearLayout
             android:id="@+id/middleLayout"
             android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/itemAuthor"
+            app:layout_constraintTop_toBottomOf="@+id/topLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
@@ -63,4 +81,10 @@
                 android:layout_height="wrap_content"/>
 
     </LinearLayout>
+
+    <View
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 </android.support.constraint.ConstraintLayout>
