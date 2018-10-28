@@ -50,7 +50,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
         return postList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView author;
         public TextView title;
@@ -65,6 +65,20 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
             commentCount = view.findViewById(R.id.postCommentCount);
             thumbnail = view.findViewById(R.id.postItemImage);
             postTime = view.findViewById(R.id.postItemTime);
+            view.findViewById(R.id.dismissPostButton).setOnClickListener(this);
+            view.findViewById(R.id.middleLayout).setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.dismissPostButton:
+                    postList.remove(getAdapterPosition());
+                    notifyDataSetChanged();
+                    break;
+                case R.id.middleLayout:
+                    break;
+            }
         }
     }
 }
