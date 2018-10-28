@@ -4,7 +4,8 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import nuklas.com.topreddit.model.RedditPost.PostData
-import nuklas.com.topreddit.utils.POSTS
+import nuklas.com.topreddit.utils.POSTS_KEY
+import nuklas.com.topreddit.utils.POST_KEY
 import nuklas.com.topreddit.utils.PostListAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -20,9 +21,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         savedInstanceState?.let {
-            if (it.containsKey(POSTS)) {
+            if (it.containsKey(POSTS_KEY)) {
                 presenter.posts.clear()
-                presenter.posts = it.getParcelableArrayList<PostData>(POSTS)
+                presenter.posts = it.getParcelableArrayList<PostData>(POSTS_KEY)
             }
         }
 
@@ -33,7 +34,8 @@ class MainActivity : AppCompatActivity() {
         }
         postListFragmentContainerLand?.let {
             isLandscape = true
-            supportFragmentManager.beginTransaction().replace(R.id.postListFragmentContainerLand, postListFragment).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.postListFragmentContainerLand, postListFragment)
+                .commit()
             supportFragmentManager.beginTransaction().replace(R.id.postFragmentContainerLand, postFragment).commit()
             supportFragmentManager.executePendingTransactions()
         }
@@ -44,11 +46,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun displayPost(post: PostData) {
-        if (isLandscape) { postFragment.displayPost(post) }
+        if (isLandscape) {
+            postFragment.displayPost(post)
+        } else {
+            val bundle = Bundle()
+            bundle.putParcelable(POST_KEY, post)
+            postFragment.arguments = bundle
+            supportFragmentManager.beginTransaction().replace(R.id.frameLayout, postFragment).addToBackStack("list").commit()
+            supportFragmentManager.executePendingTransactions()
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle?) {
-        outState?.putParcelableArrayList(POSTS, presenter.posts)
+        outState?.putParcelableArrayList(POSTS_KEY, presenter.posts)
         super.onSaveInstanceState(outState)
     }
 

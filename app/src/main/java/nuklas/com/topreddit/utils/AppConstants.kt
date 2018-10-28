@@ -1,3 +1,4 @@
 package nuklas.com.topreddit.utils
 
-val POSTS: String = "POSTS"
+const val POSTS_KEY: String = "POSTS_KEY"
+const val POST_KEY: String = "POST"
