@@ -1,25 +1,26 @@
 package nuklas.com.topreddit.utils;
 
-import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import nuklas.com.topreddit.MainActivity;
 import nuklas.com.topreddit.R;
-import nuklas.com.topreddit.model.RedditPost;
+import nuklas.com.topreddit.model.RedditPost.PostData;
 
 import java.util.ArrayList;
 
 public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHolder> {
 
-    private ArrayList<RedditPost> postList;
-    private Activity activity;
+    private ArrayList<PostData> postList;
+    private MainActivity activity;
 
-    public PostListAdapter(ArrayList<RedditPost> postList, Activity activity){
+    public PostListAdapter(ArrayList<PostData> postList, MainActivity activity){
         this.postList = postList;
         this.activity = activity;
     }
@@ -34,11 +35,13 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        RedditPost post = postList.get(position);
-        holder.author.setText(post.data.author);
-        holder.commentCount.setText(post.data.commentCount);
+        PostData post = postList.get(position);
+        holder.author.setText(post.author);
+        holder.title.setText(post.title);
+        holder.commentCount.setText(String.format("%s comments", String.valueOf(post.commentCount)));
+        holder.postTime.setText(DateUtils.getRelativeTimeSpanString(post.created * 1000));
         Glide.with(activity)
-                .load(post.data.imageThumbnailUrl)
+                .load(post.imageThumbnailUrl)
                 .into(holder.thumbnail);
     }
 
@@ -53,6 +56,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
         public TextView title;
         public TextView commentCount;
         public ImageView thumbnail;
+        public TextView postTime;
 
         ViewHolder(View view) {
             super(view);
@@ -60,6 +64,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
             title = view.findViewById(R.id.postItemTitle);
             commentCount = view.findViewById(R.id.postCommentCount);
             thumbnail = view.findViewById(R.id.postItemImage);
+            postTime = view.findViewById(R.id.postItemTime);
         }
     }
 }
