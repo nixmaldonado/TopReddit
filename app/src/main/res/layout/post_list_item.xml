@@ -17,6 +17,8 @@
                 android:id="@+id/itemAuthor"
                 android:padding="8dp"
                 tools:text="UserName"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

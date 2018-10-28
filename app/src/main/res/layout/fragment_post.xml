@@ -13,6 +13,8 @@
         <TextView
                 android:id="@+id/userName"
                 android:padding="8dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 tools:text="UserName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
