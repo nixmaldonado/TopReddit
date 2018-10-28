@@ -14,7 +14,11 @@ class MainActivityPresenter(var view: MainActivity): Callback<RedditResponse> {
     var posts: ArrayList<PostData> = ArrayList()
 
     fun initialize() {
-        WebClientBuilder.getClient()?.topPosts?.enqueue(this)
+        if (posts.isEmpty()) {
+            WebClientBuilder.getClient()?.topPosts?.enqueue(this)
+        } else {
+            view.setRecyclerAdapterToPostListFragment(PostListAdapter(posts, view))
+        }
     }
 
     override fun onResponse(call: Call<RedditResponse>, response: Response<RedditResponse>) {

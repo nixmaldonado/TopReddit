@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import nuklas.com.topreddit.model.RedditPost.PostData
 import nuklas.com.topreddit.utils.POSTS
+import nuklas.com.topreddit.utils.PostListAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,5 +50,15 @@ class MainActivity : AppCompatActivity() {
     override fun onSaveInstanceState(outState: Bundle?) {
         outState?.putParcelableArrayList(POSTS, presenter.posts)
         super.onSaveInstanceState(outState)
+    }
+
+    fun setRecyclerAdapterToPostListFragment(adapter: PostListAdapter) {
+        if (isLandscape) {
+            val fragment: PostListFragment = supportFragmentManager.findFragmentById(R.id.postListFragmentContainerLand) as PostListFragment
+            fragment.setRecyclerAdapter(adapter)
+        } else {
+            val fragment: PostListFragment = supportFragmentManager.findFragmentById(R.id.frameLayout) as PostListFragment
+            fragment.setRecyclerAdapter(adapter)
+        }
     }
 }
