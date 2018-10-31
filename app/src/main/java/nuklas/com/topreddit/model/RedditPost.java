@@ -26,12 +26,16 @@ public class RedditPost {
         @SerializedName("thumbnail")
         public String imageThumbnailUrl;
 
+        @SerializedName("url")
+        public String urlString;
+
         protected PostData(Parcel in) {
             author = in.readString();
             title = in.readString();
             created = in.readLong();
             commentCount = in.readInt();
             imageThumbnailUrl = in.readString();
+            urlString = in.readString();
         }
 
         public static final Creator<PostData> CREATOR = new Creator<PostData>() {
@@ -58,6 +62,7 @@ public class RedditPost {
             dest.writeLong(created);
             dest.writeInt(commentCount);
             dest.writeString(imageThumbnailUrl);
+            dest.writeString(urlString);
         }
     }
 }
