@@ -29,6 +29,8 @@ public class RedditPost {
         @SerializedName("url")
         public String urlString;
 
+        public boolean isNew;
+
         protected PostData(Parcel in) {
             author = in.readString();
             title = in.readString();
@@ -36,6 +38,7 @@ public class RedditPost {
             commentCount = in.readInt();
             imageThumbnailUrl = in.readString();
             urlString = in.readString();
+            isNew = in.readInt() == 1;
         }
 
         public static final Creator<PostData> CREATOR = new Creator<PostData>() {
@@ -56,13 +59,14 @@ public class RedditPost {
         }
 
         @Override
-        public void writeToParcel(Parcel dest, int flags) {
-            dest.writeString(author);
-            dest.writeString(title);
-            dest.writeLong(created);
-            dest.writeInt(commentCount);
-            dest.writeString(imageThumbnailUrl);
-            dest.writeString(urlString);
+        public void writeToParcel(Parcel parcel, int flags) {
+            parcel.writeString(author);
+            parcel.writeString(title);
+            parcel.writeLong(created);
+            parcel.writeInt(commentCount);
+            parcel.writeString(imageThumbnailUrl);
+            parcel.writeString(urlString);
+            parcel.writeInt(isNew ? 1 : 0);
         }
     }
 }
