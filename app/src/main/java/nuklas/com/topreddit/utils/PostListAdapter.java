@@ -15,12 +15,15 @@ import nuklas.com.topreddit.model.RedditPost.PostData;
 
 import java.util.ArrayList;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHolder> {
 
     private ArrayList<PostData> postList;
     private MainActivity activity;
 
-    public PostListAdapter(ArrayList<PostData> postList, MainActivity activity){
+    public PostListAdapter(ArrayList<PostData> postList, MainActivity activity) {
         this.postList = postList;
         this.activity = activity;
     }
@@ -36,6 +39,13 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         PostData post = postList.get(position);
+
+        if (post.isNewPost) {
+            holder.isNewPostMarker.setVisibility(VISIBLE);
+        } else {
+            holder.isNewPostMarker.setVisibility(GONE);
+        }
+
         holder.author.setText(post.author);
         holder.title.setText(post.title);
         holder.commentCount.setText(String.format("%s comments", String.valueOf(post.commentCount)));
@@ -52,6 +62,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        public ImageView isNewPostMarker;
         public TextView author;
         public TextView title;
         public TextView commentCount;
@@ -60,6 +71,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
 
         ViewHolder(View view) {
             super(view);
+            isNewPostMarker = view.findViewById(R.id.isNewPostMarker);
             author = view.findViewById(R.id.itemAuthor);
             title = view.findViewById(R.id.postItemTitle);
             commentCount = view.findViewById(R.id.postCommentCount);
@@ -71,7 +83,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
 
         @Override
         public void onClick(View view) {
-            switch (view.getId()){
+            switch (view.getId()) {
                 case R.id.dismissPostButton:
                     postList.remove(getAdapterPosition());
                     notifyDataSetChanged();

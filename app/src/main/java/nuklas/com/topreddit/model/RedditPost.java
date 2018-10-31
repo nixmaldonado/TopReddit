@@ -11,6 +11,10 @@ public class RedditPost {
 
     public static class PostData implements Parcelable {
 
+        public PostData() {
+            isNewPost = true;
+        }
+
         @SerializedName("author")
         public String author;
 
@@ -29,7 +33,7 @@ public class RedditPost {
         @SerializedName("url")
         public String urlString;
 
-        public boolean isNew;
+        public boolean isNewPost;
 
         protected PostData(Parcel in) {
             author = in.readString();
@@ -38,7 +42,7 @@ public class RedditPost {
             commentCount = in.readInt();
             imageThumbnailUrl = in.readString();
             urlString = in.readString();
-            isNew = in.readInt() == 1;
+            isNewPost = in.readInt() == 1;
         }
 
         public static final Creator<PostData> CREATOR = new Creator<PostData>() {
@@ -66,7 +70,7 @@ public class RedditPost {
             parcel.writeInt(commentCount);
             parcel.writeString(imageThumbnailUrl);
             parcel.writeString(urlString);
-            parcel.writeInt(isNew ? 1 : 0);
+            parcel.writeInt(isNewPost ? 1 : 0);
         }
     }
 }

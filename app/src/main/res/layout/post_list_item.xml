@@ -13,6 +13,13 @@
             android:gravity="center"
             android:layout_height="wrap_content">
 
+        <ImageView
+                android:id="@+id/isNewPostMarker"
+                android:layout_margin="8dp"
+                android:src="@color/colorPrimary"
+                android:layout_width="16dp"
+                android:layout_height="16dp"/>
+
         <TextView
                 android:id="@+id/itemAuthor"
                 android:padding="8dp"
