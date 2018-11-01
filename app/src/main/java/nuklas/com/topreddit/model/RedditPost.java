@@ -28,10 +28,10 @@ public class RedditPost {
         public int commentCount;
 
         @SerializedName("thumbnail")
-        public String imageThumbnailUrl;
+        public String thumbnailUrl;
 
         @SerializedName("url")
-        public String urlString;
+        public String imageUrl;
 
         public boolean isNewPost;
 
@@ -40,8 +40,8 @@ public class RedditPost {
             title = in.readString();
             created = in.readLong();
             commentCount = in.readInt();
-            imageThumbnailUrl = in.readString();
-            urlString = in.readString();
+            thumbnailUrl = in.readString();
+            imageUrl = in.readString();
             isNewPost = in.readInt() == 1;
         }
 
@@ -68,8 +68,8 @@ public class RedditPost {
             parcel.writeString(title);
             parcel.writeLong(created);
             parcel.writeInt(commentCount);
-            parcel.writeString(imageThumbnailUrl);
-            parcel.writeString(urlString);
+            parcel.writeString(thumbnailUrl);
+            parcel.writeString(imageUrl);
             parcel.writeInt(isNewPost ? 1 : 0);
         }
     }

@@ -51,7 +51,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
         holder.commentCount.setText(String.format("%s comments", String.valueOf(post.commentCount)));
         holder.postTime.setText(DateUtils.getRelativeTimeSpanString(post.created * 1000));
         Glide.with(activity)
-                .load(post.imageThumbnailUrl)
+                .load(post.thumbnailUrl)
                 .into(holder.thumbnail);
     }
 
