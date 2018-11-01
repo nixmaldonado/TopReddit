@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import kotlinx.android.synthetic.main.fragment_post_list.*
 import nuklas.com.topreddit.model.RedditPost
 import nuklas.com.topreddit.model.RedditResponse
 import nuklas.com.topreddit.utils.PostListAdapter
@@ -17,6 +18,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PostListFragment : Fragment() {
+
+    lateinit var adapter: PostListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,12 +34,17 @@ class PostListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         (activity as MainActivity).initializePresenter()
+        dismissAllButton.setOnClickListener { dismissAll() }
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun dismissAll() {
+        adapter.clearAll()
     }
 
     fun setRecyclerAdapter(adapter: PostListAdapter) {
         view?.let {
-
+            this.adapter = adapter
             val swipeLayout: android.support.v4.widget.SwipeRefreshLayout = it.findViewById(R.id.swipeContainer)
             swipeLayout.setOnRefreshListener { refreshPostList(adapter, swipeLayout) }
             it.findViewById<RecyclerView>(R.id.postListRecycler).adapter = adapter
