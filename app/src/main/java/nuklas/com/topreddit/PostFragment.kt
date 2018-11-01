@@ -27,7 +27,7 @@ class PostFragment : Fragment() {
         userName.text = post.author
         postTitle.text = post.title
         activity?.let {
-            if (post.urlString.endsWith(".gifv"))  post.urlString =  post.urlString.dropLast(1)
+            if (post.urlString.endsWith(".gifv")) post.urlString = post.urlString.dropLast(1)
             Glide.with(it)
                 .load(post.urlString)
                 .into(postImage)
