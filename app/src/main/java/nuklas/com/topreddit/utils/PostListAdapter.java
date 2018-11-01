@@ -60,6 +60,16 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
         return postList.size();
     }
 
+    public void clearAll() {
+        postList.clear();
+        notifyDataSetChanged();
+    }
+
+    public void addAll(ArrayList<PostData> postList) {
+        this.postList.addAll(postList);
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public ImageView isNewPostMarker;
