@@ -61,8 +61,9 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
     }
 
     public void clearAll() {
+        final int size = postList.size();
         postList.clear();
-        notifyDataSetChanged();
+        notifyItemRangeRemoved(0, size);
     }
 
     public void addAll(ArrayList<PostData> postList) {
@@ -96,7 +97,7 @@ public class PostListAdapter extends RecyclerView.Adapter<PostListAdapter.ViewHo
             switch (view.getId()) {
                 case R.id.dismissPostButton:
                     postList.remove(getAdapterPosition());
-                    notifyDataSetChanged();
+                    notifyItemRemoved(getAdapterPosition());
                     break;
                 case R.id.middleLayout:
                     postList.get(getAdapterPosition()).isNewPost = false;
